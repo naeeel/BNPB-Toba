@@ -32,23 +32,28 @@ class _SplashViewState extends State<SplashView> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: 600, // Adjust the height as needed
-              child: FittedBox(
-                fit: BoxFit.contain,
-                child: Image.asset(
-                  'assets/introduction_animation/awk.jpg',
-                ),
-              ),
-            ),
             Padding(
-              padding: EdgeInsets.only(top: 8.0, bottom: 8.0),
-              child: Text(
-                "BNBP",
-                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-              ),
-            ),
+  padding: EdgeInsets.only(top: 180.0), // Sesuaikan nilai top sesuai kebutuhan
+  child: Container(
+    width: MediaQuery.of(context).size.width,
+    height: 250, // Sesuaikan tinggi gambar
+    child: FittedBox(
+      fit: BoxFit.contain,
+      child: Image.asset(
+        'assets/introduction_animation/logo.png',
+      ),
+    ),
+  ),
+),
+SizedBox(height: 155.0), // Menambahkan jarak vertikal antara gambar dan teks
+Padding(
+  padding: EdgeInsets.symmetric(vertical: 8.0),
+  child: Text(
+    "BPBD TOBA",
+    style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+  ),
+),
+
             Padding(
               padding: EdgeInsets.only(left: 64, right: 64),
               child: Text(

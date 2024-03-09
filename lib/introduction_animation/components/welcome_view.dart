@@ -60,20 +60,11 @@ class WelcomeView extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SlideTransition(
-                position: _welcomeImageAnimation,
-                child: Container(
-                  constraints: BoxConstraints(maxWidth: 350, maxHeight: 350),
-                  child: Image.asset(
-                    'assets/introduction_animation/welcome.png',
-                    fit: BoxFit.contain,
-                  ),
-                ),
-              ),
+              
               SlideTransition(
                 position: _welcomeFirstHalfAnimation,
                 child: Text(
-                  "Welcome",
+                  "Selamat Datang",
                   style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                 ),
               ),
@@ -81,8 +72,17 @@ class WelcomeView extends StatelessWidget {
                 padding:
                     EdgeInsets.only(left: 64, right: 64, top: 16, bottom: 16),
                 child: Text(
-                  "Stay organised and live stress-free with you-do app",
+                  "Kalau sudah punya akun tekan login, \n kalau belup sign up dulu ya, daftar akun terlebih dahulu",
                   textAlign: TextAlign.center,
+                ),
+              ),SlideTransition(
+                position: _welcomeImageAnimation,
+                child: Container(
+                  constraints: BoxConstraints(maxWidth: 350, maxHeight: 350),
+                  child: Image.asset(
+                    'assets/introduction_animation/nugas.png',
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             ],
