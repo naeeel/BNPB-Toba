@@ -1,16 +1,35 @@
 import 'dart:io';
-import 'package:pelaporan_bencana/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
-import 'introduction_animation/introduction_animation_screen.dart';// Import halaman IntroductionAnimationScreen
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:provider/provider.dart';
+import 'package:pelaporan_bencana/app_theme.dart';
+import 'introduction_animation/introduction_animation_screen.dart';
+import 'provider/auth_provider.dart';
+import 'package:pelaporan_bencana/screens/welcome_screen.dart';
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print('Handling a background message ${message.messageId}');
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SystemChrome.setPreferredOrientations(<DeviceOrientation>[
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown
-  ]).then((_) => runApp(MyApp()));
+  await Firebase.initializeApp();
+
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()), // Menyediakan AuthProvider
+        // Tambahkan provider lain jika diperlukan
+      ],
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -32,7 +51,7 @@ class MyApp extends StatelessWidget {
         textTheme: AppTheme.textTheme,
         platform: TargetPlatform.iOS,
       ),
-      home: IntroductionAnimationScreen(), // Mengganti NavigationHomeScreen dengan IntroductionAnimationScreen
+      home: IntroductionAnimationScreen(), // Ganti NavigationHomeScreen dengan IntroductionAnimationScreen
     );
   }
 }

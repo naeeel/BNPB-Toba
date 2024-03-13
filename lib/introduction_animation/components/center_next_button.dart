@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animations/animations.dart';
 import 'package:pelaporan_bencana/pelaporan_bencana_app/pelaporan_bencana_app_home_screen.dart';
+import 'package:pelaporan_bencana/screens/register_screen.dart';
 
 class CenterNextButton extends StatelessWidget {
   final AnimationController animationController;
@@ -169,18 +170,29 @@ class CenterNextButton extends StatelessWidget {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  Text(
-                    'Login',
-                    style: TextStyle(
-                      color: Color(0xFFF28920),
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RegisterScreen(), // Ganti WelcomeScreen dengan nama kelas yang sesuai
+                        ),
+                      );
+                    },
+                    child: Text(
+                      'Login',
+                      style: TextStyle(
+                        color: Color(0xFFF28920),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
           ),
+
         ],
       ),
     );
